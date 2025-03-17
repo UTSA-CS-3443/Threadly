@@ -1,2 +1,2 @@
 # Threadly
-Repo for Bingo Cat
+Repo for Bongo Cat
