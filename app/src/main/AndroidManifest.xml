@@ -13,6 +13,27 @@
         android:theme="@style/Theme.Threadly"
         tools:targetApi="31">
         <activity
+            android:name=".ClothingItem.AddClothingItemActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ClothingItem.ClothingItemViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Outfit.OutfitViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Outfit.AddOutfitActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Outfit.OutfitsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Closet.AddClosetActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Closet.ClosetActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
