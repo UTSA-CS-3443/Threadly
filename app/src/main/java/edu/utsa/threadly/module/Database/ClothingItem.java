@@ -1,4 +1,9 @@
-package edu.utsa.threadly.module.Datbase;
+package edu.utsa.threadly.module.Database;
+
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
 
 @Entity(
         tableName = "clothing_items",

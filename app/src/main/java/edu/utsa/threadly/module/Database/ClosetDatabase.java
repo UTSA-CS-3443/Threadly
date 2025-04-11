@@ -1,4 +1,4 @@
-package edu.utsa.threadly.module.Datbase;
+package edu.utsa.threadly.module.Database;
 
 import androidx.room.Database;
 import androidx.room.RoomDatabase;

@@ -1,4 +1,4 @@
-package edu.utsa.threadly.module.Datbase;
+package edu.utsa.threadly.module.Database;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -8,7 +8,6 @@ public class Closet {
     @PrimaryKey(autoGenerate = true)
     public int closetId;
     public String name;
-
 
 
 

@@ -1,11 +1,12 @@
-package edu.utsa.threadly.module.Datbase;
+package edu.utsa.threadly.module.Database;
 
+import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Transaction;
 
 import java.util.List;
-
+@Dao
 public interface ClosetDao {
     // Insert
     @Insert
