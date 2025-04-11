@@ -4,6 +4,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
@@ -60,13 +64,20 @@ public class MainActivity extends AppCompatActivity {
                                 ClosetDao dao = DatabaseClient.getInstance(this).getDatabase().closetDao();
                                 dao.insertItem(item);
                             }).start();
+
+                            // Optionally, you can also set the image in an ImageView
+                            ImageView imageView = findViewById(R.id.imageView);
+                            imageView.setImageURI(Uri.parse(item.imageUri));
                         }
                     }
                 }
         );
-
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        pickImageLauncher.launch(intent);
+        Button pickImageButton = findViewById(R.id.pick_image_button);
+        pickImageButton.setOnClickListener(v -> {
+            Log.d("MainActivity", "Button clicked!");
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            pickImageLauncher.launch(intent);
+        });
 
         new Thread(() -> {
             ClosetDao dao = DatabaseClient.getInstance(this).getDatabase().closetDao();
