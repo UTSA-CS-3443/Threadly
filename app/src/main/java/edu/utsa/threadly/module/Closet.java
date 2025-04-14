@@ -3,22 +3,24 @@ package edu.utsa.threadly.module;
 import java.util.ArrayList;
 
 public class Closet {
-    private int id;
+    //helps the outfits determine which closet they are connected to
+    //when generating a new closetId determine the largest current closetId in the file and make the new closet the next one
+    private int closetId;
     private String name;
     private ArrayList<Outfit> outfits;
 
 
     Closet(int id, String name){
-        this.id = id;
+        this.closetId = id;
         this.name = name;
         this.outfits = new ArrayList<Outfit>();
     }
     public int getId() {
-        return id;
+        return closetId;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.closetId = id;
     }
 
     public String getName() {
