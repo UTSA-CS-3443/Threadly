@@ -48,4 +48,8 @@ public class ClothingItem {
     public void setType(String type) {
         this.type = type;
     }
+
+
 }
+
+
