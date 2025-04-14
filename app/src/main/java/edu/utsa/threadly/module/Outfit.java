@@ -1,6 +1,16 @@
 package edu.utsa.threadly.module;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
+import android.content.res.AssetManager;
+import android.util.Log;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Scanner;
+
+import edu.utsa.threadly.MainActivity;
 
 public class Outfit {
 
@@ -60,4 +70,41 @@ public class Outfit {
         return this.clothingItems.remove(index);
     }
 
-}
+    public void loadClothingItems(MainActivity activity){
+        AssetManager manager = activity.getAssets();
+        String filename = "Clothing_Items.csv";
+
+        try (InputStream file = manager.open(filename);
+             Scanner scan = new Scanner(file)) {
+
+            if (scan.hasNextLine()) {
+                scan.nextLine(); // Skip header
+            }
+
+            while (scan.hasNextLine()) {
+                String[] line = scan.nextLine().split(",");
+                if (line.length >= 3) {
+                    try {
+                        String name = line[0].trim();
+                        int id = Integer.parseInt(line[1].trim());
+                        String picture = line[2].trim();
+                        String type = line[3].trim();
+
+
+                        ClothingItem item = new ClothingItem(id,name,picture);
+                        this.clothingItems.add(item);
+                    } catch (NumberFormatException e) {
+                        Log.e(TAG, "Error parsing sighting ID: " + line[0], e);
+                    }
+                }
+            }
+            Log.d(TAG, "Loaded " + this.clothingItems.size() + " sightings");
+        } catch (IOException e) {
+            Log.e(TAG, "Error loading sightings file", e);
+            throw new RuntimeException("Failed to load sightings data", e);
+        }
+    }
+
+    }
+
+
