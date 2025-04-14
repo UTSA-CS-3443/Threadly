@@ -37,6 +37,7 @@ dependencies {
     annotationProcessor("androidx.room:room-compiler:2.5.0")
 
     implementation(libs.appcompat)
+    implementation (libs.material.v1110)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
