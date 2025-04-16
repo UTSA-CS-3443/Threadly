@@ -57,7 +57,10 @@ public class ClosetActivity extends AppCompatActivity {
             Log.e(TAG, "Error loading sightings file", e);
             throw new RuntimeException("Failed ", e);
         }*/
-    }
+            }
+        }
+        }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
