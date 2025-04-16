@@ -3,6 +3,7 @@ package edu.utsa.threadly.module;
 import android.app.Activity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Closet {
     //helps the outfits determine which closet they are connected to
@@ -54,6 +55,25 @@ public class Closet {
         return new String[]{this.name,String.format("%d", this.closetId)};
 
 
+    }
+
+    public static Closet csvToCloset(String[] row) {
+        if (row == null || row.length < 2) {
+            throw new IllegalArgumentException(
+                    String.format("Invalid CSV row for Closet. Expected 2+ columns, got %s",
+                            row == null ? "null" : row.length)
+            );
+        }
+
+        try {
+            int id = Integer.parseInt(row[1].trim());  // column 1: id (trim whitespace)
+            String name = row[0].trim();              // column 0: name
+
+            return new Closet(id, name);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(
+                    String.format("Invalid ID format in CSV row: %s", Arrays.toString(row)), e);
+        }
     }
 
 

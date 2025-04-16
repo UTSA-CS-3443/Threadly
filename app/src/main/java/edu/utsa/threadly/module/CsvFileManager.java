@@ -63,7 +63,7 @@ public class CsvFileManager {
         SharedPreferences prefs = activity.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         boolean isFirstRun = prefs.getBoolean(firstRunKey, true);
 
-        //if (isFirstRun) {
+        if (isFirstRun) {
             Log.i(TAG, "First run for " + filename + ": loading from assets.");
             try (InputStream assetStream = activity.getAssets().open(filename);
                  OutputStream out = activity.openFileOutput(filename, Context.MODE_PRIVATE)) {
@@ -78,7 +78,7 @@ public class CsvFileManager {
             } catch (IOException e) {
                 Log.e(TAG, "Error copying " + filename + " from assets to internal storage", e);
             }
-        //}
+        }
 
         try (InputStream in = activity.openFileInput(filename)) {
             loadCsv(in);
@@ -166,6 +166,18 @@ public class CsvFileManager {
     public String[] arrayListToArray(ArrayList<String> list){
         return list.toArray(new String[0]);
 
+    }
+
+    public String[] grabRow(String key, int columnIndex) {
+        for (int i = 0; i < rows.size(); i++) {
+            String[] row = rows.get(i);
+            if (row.length > columnIndex && row[columnIndex].equals(key)) {
+                Log.i(TAG, "Found row with key: " + key);
+                return rows.get(i);
+            }
+        }
+        Log.w(TAG, "No row found with key: " + key);
+        return null;
     }
 
 
