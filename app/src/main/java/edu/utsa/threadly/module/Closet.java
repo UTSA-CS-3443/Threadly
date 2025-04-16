@@ -13,7 +13,7 @@ public class Closet {
     private ArrayList<Outfit> outfits;
 
 
-    Closet(int id, String name){
+    public Closet(int id, String name){
         this.closetId = id;
         this.name = name;
         this.outfits = new ArrayList<Outfit>();
