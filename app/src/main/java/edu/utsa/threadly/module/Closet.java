@@ -1,5 +1,7 @@
 package edu.utsa.threadly.module;
 
+import android.app.Activity;
+
 import java.util.ArrayList;
 
 public class Closet {
@@ -46,5 +48,13 @@ public class Closet {
     public Outfit removeOutfit(int index){
         return this.outfits.remove(index);
     }
+
+
+    public String[] toStringArray(){
+        return new String[]{this.name,String.format("%d", this.closetId)};
+
+
+    }
+
 
 }

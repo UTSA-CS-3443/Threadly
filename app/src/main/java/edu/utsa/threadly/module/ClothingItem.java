@@ -49,6 +49,12 @@ public class ClothingItem {
         this.type = type;
     }
 
+    public String[] toStringArray(){
+        return new String[]{this.name,String.format("%d"),String.format("%d", this.outfitId),this.picture,this.type};
+
+
+    }
+
 
 }
 
