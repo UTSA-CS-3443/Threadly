@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -31,6 +32,8 @@ public class ClosetActivity extends AppCompatActivity {
 
     private ClosetManager closetManager;
 
+    private Button addClosetButton;
+
     private final ArrayList<Closet> closetList = new ArrayList<>();
 
     @Override
@@ -54,6 +57,21 @@ public class ClosetActivity extends AppCompatActivity {
 
             closetsSetupButton(closet);  // Setup button for enclosure
         }
+
+        addClosetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activateAddCloset();
+
+            }
+        });
+
+    }
+
+    public void activateAddCloset(){
+        Intent intent = new Intent(this,  AddClosetActivity.class);
+        startActivity(intent);
+
     }
 
 

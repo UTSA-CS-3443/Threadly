@@ -28,7 +28,7 @@
             android:name=".Outfit.OutfitsActivity"
             android:exported="false" />
         <activity
-            android:name=".Closet.AddClosetActivity"
+            android:name=".Outfit.AddClosetActivity"
             android:exported="false" />
         <activity
             android:name=".Outfit.ClosetActivity"

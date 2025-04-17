@@ -1,4 +1,4 @@
-package edu.utsa.threadly.Closet;
+package edu.utsa.threadly.Outfit;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import edu.utsa.threadly.R;
-import edu.utsa.threadly.module.CsvFileManager;
 
 public class AddClosetActivity extends Activity {
 
@@ -33,16 +32,6 @@ public class AddClosetActivity extends Activity {
                     return;
                 }
 
-                // Load the CSV file
-                CsvFileManager csvFileManager = CsvFileManager.loadCsvToLocal(AddClosetActivity.this, "Closets.csv");
-
-                // Generate a new unique ID (based on size of existing rows)
-                int newId = csvFileManager.getRows().size();  // Caution: This assumes no deletions
-
-                // Create and add the new row
-                String[] newRow = { closetName, String.valueOf(newId) };
-                csvFileManager.addRow(newRow);
-                csvFileManager.saveFile();
 
                 Toast.makeText(AddClosetActivity.this, "Closet added!", Toast.LENGTH_SHORT).show();
 
