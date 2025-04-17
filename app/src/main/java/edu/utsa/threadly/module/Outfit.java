@@ -1,7 +1,6 @@
 package edu.utsa.threadly.module;
 
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-
+import android.content.ContentValues;
 import android.content.res.AssetManager;
 import android.util.Log;
 
@@ -11,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import edu.utsa.threadly.MainActivity;
+import edu.utsa.threadly.Outfit.ClothingItemViewActivity;
 
 public class Outfit {
 
@@ -24,7 +23,7 @@ public class Outfit {
 
     private ArrayList<ClothingItem> clothingItems;
 
-    Outfit(int closetId, int outfitId, String name){
+    public Outfit(int closetId, int outfitId, String name){
         this.closetId = closetId;
         this.outfitId = outfitId;
         this.name = name;
@@ -71,12 +70,64 @@ public class Outfit {
         return this.clothingItems.remove(index);
     }
 
+    public ClothingItem grabItem(int index){return this.clothingItems.get(index);}
+
+    public int amountOfItems(){
+        return clothingItems.size();
+    }
+
 
     public String[] toStringArray(){
         return new String[]{this.name,String.format("%d", this.closetId),String.format("%d", this.outfitId)};
 
 
     }
+
+    public void loadItems(ClothingItemViewActivity activity) {
+        clothingItems.clear(); // Clear existing data
+        AssetManager manager = activity.getAssets();
+        String filename = "Clothing_Items.csv";
+
+        try (InputStream file = manager.open(filename);
+             Scanner scan = new Scanner(file)) {
+
+            if (scan.hasNextLine()) {
+                scan.nextLine(); // Skip header
+            }
+
+            while (scan.hasNextLine()) {
+                String[] enclosureCsv = scan.nextLine().split(",");
+
+                try {
+                    String name = enclosureCsv[0];
+                    int outfitId = Integer.parseInt(enclosureCsv[1]);
+                    String picture = enclosureCsv[2];
+                    String type = enclosureCsv[3];
+
+                    if (this.outfitId ==outfitId) {
+                        ClothingItem item = new ClothingItem(outfitId,name,picture,type);
+                        this.clothingItems.add(item);
+                    }
+
+                } catch (NumberFormatException e) {
+                    Log.e(ContentValues.TAG, "Error parsing enclosure ID: " + enclosureCsv[0], e);
+                }
+
+            }
+            Log.d(ContentValues.TAG, "Loaded " + clothingItems.size() + " items");
+        } catch (IOException e) {
+            Log.e(ContentValues.TAG, "Error loading items file", e);
+            throw new RuntimeException("Failed to load items data", e);
+        }
+    }
+
+
+
+
+
+
+
+
 
     public static Outfit csvToOutfit(String[] row) {
         if (row == null || row.length < 3) {

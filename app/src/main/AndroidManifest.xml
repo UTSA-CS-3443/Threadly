@@ -16,7 +16,7 @@
             android:name=".ClothingItem.AddClothingItemActivity"
             android:exported="false" />
         <activity
-            android:name=".ClothingItem.ClothingItemViewActivity"
+            android:name=".Outfit.ClothingItemViewActivity"
             android:exported="false" />
         <activity
             android:name=".Outfit.OutfitViewActivity"
@@ -31,7 +31,7 @@
             android:name=".Closet.AddClosetActivity"
             android:exported="false" />
         <activity
-            android:name=".Closet.ClosetActivity"
+            android:name=".Outfit.ClosetActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
