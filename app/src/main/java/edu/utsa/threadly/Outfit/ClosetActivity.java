@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -41,6 +42,8 @@ public class ClosetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_closet);
 
+
+
         addClosetButton = findViewById(R.id.addClosetButton);
 
         closetManager = new ClosetManager();
@@ -63,7 +66,17 @@ public class ClosetActivity extends AppCompatActivity {
         addClosetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activateAddCloset();
+                closetContainer = findViewById(R.id.closetContainer);
+                closetContainer.setVisibility(View.GONE);
+
+
+
+                // Add slight delay before adding new closet
+
+
+                        activateAddCloset();
+
+                closetContainer.setVisibility(View.VISIBLE);
 
             }
         });
@@ -71,19 +84,29 @@ public class ClosetActivity extends AppCompatActivity {
     }
 
     public void activateAddCloset() {
-        // Create hardcoded closet
-        Closet closet = new Closet(3, "Chicago");
-        closetManager.addCloset(closet);
 
-        // Immediately create a button for the new closet
-        closetsSetupButton(closet);
-
-        // Optional: Show confirmation
-        Toast.makeText(this, "Closet added: " + closet.getName(), Toast.LENGTH_SHORT).show();
-
-        // If you still want to open AddClosetActivity for UI purposes:
         Intent intent = new Intent(this, AddClosetActivity.class);
         startActivity(intent); // Just for show, doesn't wait for result
+        // Create hardcoded closet
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Closet closet = new Closet(3, "Chicago");
+                closetManager.addCloset(closet);
+                closetsSetupButton(closet);
+            }
+        }, 300);
+
+
+        // Immediately create a button for the new closet
+
+
+        // Optional: Show confirmation
+        //Toast.makeText(this, "Closet added: " + closet.getName(), Toast.LENGTH_SHORT).show();
+
+        // If you still want to open AddClosetActivity for UI purposes:
+
     }
 
 

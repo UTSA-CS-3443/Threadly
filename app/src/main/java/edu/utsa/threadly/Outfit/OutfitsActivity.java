@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -66,19 +67,26 @@ public class OutfitsActivity extends AppCompatActivity {
     }
 
     public void activateAddOutfit() {
-        // Create hardcoded closet
-        Outfit outfit = new Outfit(3,7, "formal");
-        outfitManager.addOutfit(outfit);
 
-        // Immediately create a button for the new closet
-        outfitsSetupButton(outfit);
-
-        // Optional: Show confirmation
-        Toast.makeText(this, "Closet added: " + outfit.getName(), Toast.LENGTH_SHORT).show();
-
-        // If you still want to open AddClosetActivity for UI purposes:
         Intent intent = new Intent(this, AddOutfitActivity.class);
         startActivity(intent); // Just for show, doesn't wait for result
+        // Create hardcoded closet
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+        Outfit outfit = new Outfit(3,7, "formal");
+        outfitManager.addOutfit(outfit);
+        // Immediately create a button for the new closet
+        outfitsSetupButton(outfit);
+            }
+        }, 200);
+
+
+        // Optional: Show confirmation
+        //Toast.makeText(this, "Closet added: " + outfit.getName(), Toast.LENGTH_SHORT).show();
+
+        // If you still want to open AddClosetActivity for UI purposes:
+
     }
 
     private void outfitsSetupButton(Outfit outfit) {

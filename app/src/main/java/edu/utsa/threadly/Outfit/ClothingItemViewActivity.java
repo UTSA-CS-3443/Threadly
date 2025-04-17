@@ -5,9 +5,12 @@ import static android.content.ContentValues.TAG;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,6 +26,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 
+import edu.utsa.threadly.ClothingItem.AddClothingItemActivity;
 import edu.utsa.threadly.R;
 import edu.utsa.threadly.module.Closet;
 import edu.utsa.threadly.module.ClothingItem;
@@ -30,67 +34,114 @@ import edu.utsa.threadly.module.Outfit;
 
 public class ClothingItemViewActivity extends AppCompatActivity {
     private LinearLayout layout;
+    private Outfit itemManager;
+    private Button addItemButton;
+    private int itemCounter = 0;
+    private final ClothingItem[] hardcodedItems = {
+            new ClothingItem(7, "Black Fedora", "black_fedora", "hat"),
+            new ClothingItem(7, "White Button Up", "white_button_up", "shirt"),
+            new ClothingItem(7, "Black Vest", "black_vest", "vest"),
+            new ClothingItem(7, "Black Tie", "black_tie", "tie"),
+            new ClothingItem(7, "Default", "funny_cat", "?")
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_clothing_item_view);
 
-         layout = findViewById(R.id.items_container);
+        layout = findViewById(R.id.items_container);
+        addItemButton = findViewById(R.id.addClothingItem);
 
         int closetId = getIntent().getIntExtra("CLOSET_ID", -1);
-        int outfitId =getIntent().getIntExtra("OUTFIT_ID", -1);
-        Outfit itemManager = new Outfit(closetId,outfitId,"");
+        int outfitId = getIntent().getIntExtra("OUTFIT_ID", -1);
+
+        itemManager = new Outfit(closetId, outfitId, "");
+
         try {
             itemManager.loadItems(this);
             Log.d(TAG, "Loaded successfully");
         } catch (Exception e) {
-            Log.e(TAG, "Error loading sightings", e);
+            Log.e(TAG, "Error loading items", e);
             Toast.makeText(this, "Error loading item data", Toast.LENGTH_LONG).show();
         }
 
-        ClothingItem item;
+        // Load existing items
         for (int i = 0; i < itemManager.amountOfItems(); i++) {
-            item = itemManager.grabItem(i);
-
-            addItemCard(item);
+            addItemCard(itemManager.grabItem(i));
         }
+
+        addItemButton.setOnClickListener(v -> {
+
+            Intent intent = new Intent(this, AddClothingItemActivity.class);
+            startActivity(intent);
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+            if (itemCounter < hardcodedItems.length) {
+                activateAddItem();
+                itemCounter++;
+            }
+
+                }
+            }, 200);
+        });
+    }
+
+    public void activateAddItem() {
+        if (itemCounter >= hardcodedItems.length) {
+            itemCounter = 0; // Reset counter if we've gone through all items
+        }
+
+
+        ClothingItem item = hardcodedItems[itemCounter];
+        itemManager.addGarment(item);
+        addItemCard(item);
+
+        //Toast.makeText(this, "Item added: " + item.getName(), Toast.LENGTH_SHORT).show();
     }
 
     private void addItemCard(ClothingItem item) {
-        // Inflate the card layout
-        LinearLayout dinoDetailsLayout = new LinearLayout(this);
-        dinoDetailsLayout.setOrientation(LinearLayout.HORIZONTAL); // Horizontal layout for name, diet, age, and image
+        // Create card container
+        MaterialCardView card = new MaterialCardView(this);
+        card.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        ));
+        card.setCardElevation(8);
+        card.setRadius(16);
+        card.setContentPadding(16, 16, 16, 16);
+        card.setCardBackgroundColor(ContextCompat.getColor(this, R.color.white));
 
-        // Create an ImageView for the dinosaur image
+        // Create horizontal layout
+        LinearLayout itemLayout = new LinearLayout(this);
+        itemLayout.setOrientation(LinearLayout.HORIZONTAL);
+        itemLayout.setGravity(Gravity.CENTER_VERTICAL);
+
+        // Add image
         ImageView imageView = new ImageView(this);
-        String imageName = item.getName().toLowerCase().replace(" ", "_"); // Format name for image (e.g., "T_Rex" -> "t_rex")
+        String imageName = item.getPicture().toLowerCase();
         int imageResourceId = getResources().getIdentifier(imageName, "drawable", getPackageName());
+        imageView.setImageResource(imageResourceId != 0 ? imageResourceId : R.drawable.funny_car);
+        imageView.setLayoutParams(new LinearLayout.LayoutParams(200, 200));
 
-        if (imageResourceId != 0) { // If the image exists
-            imageView.setImageResource(imageResourceId);
-        } else {
-            imageView.setImageResource(R.drawable.funny_car); // Set a default image if none is found
-        }
-        imageView.setLayoutParams(new LinearLayout.LayoutParams(200, 200)); // Set size for image
-
-        // Create a TextView for the dinosaur details (name, diet, and age)
+        // Add text details
         TextView textView = new TextView(this);
-        textView.setText("Name: " + item.getName() + "\nType: " + item.getType());
-        textView.setPadding(16, 16, 16, 16); // Add some padding
-        textView.setTextSize(16); // Set font size
+        textView.setText(String.format("%s\nType: %s", item.getName(), item.getType()));
+        textView.setTextSize(16);
         textView.setTextColor(Color.BLACK);
-        textView.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1)); // TextView should take remaining space
+        textView.setLayoutParams(new LinearLayout.LayoutParams(
+                0,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                1
+        ));
 
-        // Add ImageView and TextView to the horizontal LinearLayout
-        dinoDetailsLayout.addView(imageView);
-        dinoDetailsLayout.addView(textView);
-
-        // Add the LinearLayout (containing both the image and the text) to the main layout
-        layout.addView(dinoDetailsLayout);
+        // Add views to card
+        itemLayout.addView(imageView);
+        itemLayout.addView(textView);
+        card.addView(itemLayout);
+        layout.addView(card);
     }
-
-
 }
