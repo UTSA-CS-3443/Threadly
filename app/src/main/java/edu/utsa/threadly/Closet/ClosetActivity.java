@@ -2,8 +2,10 @@ package edu.utsa.threadly.Closet;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,6 +19,7 @@ import edu.utsa.threadly.module.CsvFileManager;
 public class ClosetActivity extends AppCompatActivity {
 
     private static final int ADD_CLOSET_REQUEST = 1;
+    private static final String TAG = "ClosetActivity";
 
     private LinearLayout closetContainer;
     private CsvFileManager csvFileManager;
@@ -47,14 +50,20 @@ public class ClosetActivity extends AppCompatActivity {
         closetList.clear();
         ArrayList<String[]> rows = csvFileManager.getRows();
 
-        for (String[] row : rows) {
-            if (row.length >= 2) {
-                String name = row[0].trim();
-                int id;
+        for(int i = 1; i < rows.size(); i++) {
+            String[] s = rows.get(i);
+            Log.d("CVS", "Row: " + s[0] + ", " + s[1]);
+            if (s.length >= 2) {
+                String name = s[0].trim();
                 try {
-                    id = Integer.parseInt(row[1].trim());
+                    int id = Integer.parseInt(s[1].trim());
                     closetList.add(new Closet(id, name));
-                } catch (NumberFormatException ignored) {}
+                } catch (NumberFormatException e) {
+                    Log.e("CSV", "Invalid ID format in CSV row: " + s[1], e);
+                    Toast.makeText(this, "Error: Invalid ID format in CSV file.", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(this, "Error: Invalid row in CSV file.", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -88,26 +97,35 @@ public class ClosetActivity extends AppCompatActivity {
             closetContainer.addView(closetButton);
         }
     }
+
     @Override
     protected void onResume() {
         super.onResume();
         loadClosets(); // reload from CSV and update UI
     }
+
     private void loadClosets() {
         closetList.clear();
         closetContainer.removeAllViews();
 
         CsvFileManager csvFileManager = CsvFileManager.loadCsvToLocal(this, "Closets.csv");
         ArrayList<String[]> rows = csvFileManager.getRows();
-        for (String[] row : rows) {
+        for (int i = 1; i < rows.size(); i++) {
+            String[] row = rows.get(i);
             if (row.length >= 2) {
-                closetList.add(new Closet(Integer.parseInt(row[1]), row[0]));
+                try {
+                    closetList.add(new Closet(Integer.parseInt(row[1].trim()), row[0]));
+                } catch (NumberFormatException e) {
+                    Log.e("CSVC", "Invalid ID format in CSV row: " + row[1], e);
+                    Toast.makeText(this, "Error: Invalid ID format in CSV file.", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(this, "Error: Invalid row in CSV file.", Toast.LENGTH_SHORT).show();
             }
         }
 
         displayClosets(); // repopulates the scroll view
     }
-
 
     private int getNextClosetId() {
         int maxId = -1;
@@ -132,6 +150,8 @@ public class ClosetActivity extends AppCompatActivity {
 
                 closetList.add(new Closet(newId, newClosetName));
                 displayClosets();
+            } else {
+                Toast.makeText(this, "Error: Closet name cannot be empty.", Toast.LENGTH_SHORT).show();
             }
         }
     }

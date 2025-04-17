@@ -10,6 +10,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import edu.utsa.threadly.Closet.ClosetActivity;
 import edu.utsa.threadly.Outfit.OutfitsActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button nextButton = findViewById(R.id.next_button);
         nextButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, OutfitsActivity.class);
+            Intent intent = new Intent(this, ClosetActivity.class);
             startActivity(intent);
         });
     }

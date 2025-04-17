@@ -39,6 +39,7 @@ dependencies {
     implementation(libs.appcompat)
     implementation (libs.material.v1110)
     implementation(libs.material)
+    implementation (libs.play.services.mlkit.subject.segmentation)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     testImplementation(libs.junit)

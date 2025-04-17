@@ -9,6 +9,7 @@ activity = "1.10.1"
 constraintlayout = "2.2.1"
 firebaseInappmessaging = "21.0.2"
 materialVersion = "1.11.0"
+playServicesMlkitSubjectSegmentation = "16.0.0-beta1"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -20,6 +21,7 @@ activity = { group = "androidx.activity", name = "activity", version.ref = "acti
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 firebase-inappmessaging = { group = "com.google.firebase", name = "firebase-inappmessaging", version.ref = "firebaseInappmessaging" }
 material-v1110 = { module = "com.google.android.material:material", version.ref = "materialVersion" }
+play-services-mlkit-subject-segmentation = { module = "com.google.android.gms:play-services-mlkit-subject-segmentation", version.ref = "playServicesMlkitSubjectSegmentation" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
