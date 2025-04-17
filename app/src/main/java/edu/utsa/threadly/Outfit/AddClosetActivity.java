@@ -1,6 +1,7 @@
 package edu.utsa.threadly.Outfit;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import edu.utsa.threadly.R;
+import edu.utsa.threadly.module.Closet;
 
 public class AddClosetActivity extends Activity {
 
@@ -25,19 +27,23 @@ public class AddClosetActivity extends Activity {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String closetName = closetNameInput.getText().toString().trim();
-
-                if (closetName.isEmpty()) {
-                    Toast.makeText(AddClosetActivity.this, "Enter a closet name", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-
-                Toast.makeText(AddClosetActivity.this, "Closet added!", Toast.LENGTH_SHORT).show();
-
-                // Finish and go back to ClosetActivity
-                finish();
+                pushed();
             }
+
+
         });
+    }
+    public void pushed(){
+        String closetName = closetNameInput.getText().toString().trim();
+        if (closetName.isEmpty()) {
+            Toast.makeText(AddClosetActivity.this, "Enter a closet name", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+        Toast.makeText(AddClosetActivity.this, "Closet added!", Toast.LENGTH_SHORT).show();
+        // Finish and go back to ClosetActivity
+        finish();
+
     }
 }

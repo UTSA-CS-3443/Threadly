@@ -41,6 +41,8 @@ public class ClosetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_closet);
 
+        addClosetButton = findViewById(R.id.addClosetButton);
+
         closetManager = new ClosetManager();
 
         try {
@@ -68,10 +70,20 @@ public class ClosetActivity extends AppCompatActivity {
 
     }
 
-    public void activateAddCloset(){
-        Intent intent = new Intent(this,  AddClosetActivity.class);
-        startActivity(intent);
+    public void activateAddCloset() {
+        // Create hardcoded closet
+        Closet closet = new Closet(3, "Chicago");
+        closetManager.addCloset(closet);
 
+        // Immediately create a button for the new closet
+        closetsSetupButton(closet);
+
+        // Optional: Show confirmation
+        Toast.makeText(this, "Closet added: " + closet.getName(), Toast.LENGTH_SHORT).show();
+
+        // If you still want to open AddClosetActivity for UI purposes:
+        Intent intent = new Intent(this, AddClosetActivity.class);
+        startActivity(intent); // Just for show, doesn't wait for result
     }
 
 

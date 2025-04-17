@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -26,6 +27,9 @@ import edu.utsa.threadly.module.Outfit;
 
 public class OutfitsActivity extends AppCompatActivity {
 
+    private Closet outfitManager;
+    private Button addOutfitButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +37,9 @@ public class OutfitsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_outfits);
 
         int closetId = getIntent().getIntExtra("CLOSET_ID", -1);
-        Closet outfitManager = new Closet(closetId,"Random");
+         outfitManager = new Closet(closetId,"Random");
+
+        addOutfitButton = findViewById(R.id.addOutfitButton);
 
         try {
             outfitManager.loadOutfits(this);
@@ -49,7 +55,32 @@ public class OutfitsActivity extends AppCompatActivity {
 
             outfitsSetupButton(outfit);  // Setup button for enclosure
         }
+
+        addOutfitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activateAddOutfit();
+
+            }
+        });
     }
+
+    public void activateAddOutfit() {
+        // Create hardcoded closet
+        Outfit outfit = new Outfit(3,7, "formal");
+        outfitManager.addOutfit(outfit);
+
+        // Immediately create a button for the new closet
+        outfitsSetupButton(outfit);
+
+        // Optional: Show confirmation
+        Toast.makeText(this, "Closet added: " + outfit.getName(), Toast.LENGTH_SHORT).show();
+
+        // If you still want to open AddClosetActivity for UI purposes:
+        Intent intent = new Intent(this, AddOutfitActivity.class);
+        startActivity(intent); // Just for show, doesn't wait for result
+    }
+
     private void outfitsSetupButton(Outfit outfit) {
         // Create a layout object
         LinearLayout rootLayout = findViewById(R.id.OutfitContainer);
