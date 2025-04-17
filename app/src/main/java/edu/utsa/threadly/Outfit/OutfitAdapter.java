@@ -2,6 +2,7 @@ package edu.utsa.threadly.Outfit;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,17 +11,24 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.utsa.threadly.R;
 
 public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.OutfitViewHolder> {
-    private final List<String> outfitItems;
+    private List<String> outfitItems;
     private final Context context;
 
     public OutfitAdapter(Context context, List<String> outfitItems) {
         this.context = context;
         this.outfitItems = outfitItems;
+    }
+
+    public void updateData(ArrayList<String> newOutfits) {
+        Log.d("OutfitAdapter", "Updating adapter with " + newOutfits.size() + " items");
+        this.outfitItems = newOutfits;
+        notifyDataSetChanged();
     }
 
     public static class OutfitViewHolder extends RecyclerView.ViewHolder {

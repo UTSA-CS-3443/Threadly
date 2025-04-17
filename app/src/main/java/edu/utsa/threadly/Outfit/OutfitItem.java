@@ -11,6 +11,7 @@ public class OutfitItem {
         this.imageResId = imageResId;
     }
 
+
     public String getTitle() { return title; }
     public String getTags() { return tags; }
     public int getImageResId() { return imageResId; }

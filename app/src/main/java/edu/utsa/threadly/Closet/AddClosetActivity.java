@@ -37,7 +37,7 @@ public class AddClosetActivity extends Activity {
                 CsvFileManager csvFileManager = CsvFileManager.loadCsvToLocal(AddClosetActivity.this, "Closets.csv");
 
                 // Generate a new unique ID (based on size of existing rows)
-                int newId = csvFileManager.getRows().size();  // Caution: This assumes no deletions
+                int newId = csvFileManager.getRows().size()-1;  // Caution: This assumes no deletions
 
                 // Create and add the new row
                 String[] newRow = { closetName, String.valueOf(newId) };

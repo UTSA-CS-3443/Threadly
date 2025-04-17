@@ -180,6 +180,28 @@ public class CsvFileManager {
         return null;
     }
 
+    public int getMaxID(int coumnIndex) {
+        int maxID = -1;
+        Log.d(TAG, "coumnIndex: " + coumnIndex);
+        if(coumnIndex <= 0){
+            Log.w(TAG, "Column index must be greater than 0");
+            return maxID;
+        }
+        for (int i = 1; i < rows.size(); i++) {
+            String[] row = rows.get(i);
+            if (row.length > 1) {
+                try {
+                    int id = Integer.parseInt(row[coumnIndex].trim());
+                    if (id > maxID) {
+                        maxID = id;
+                    }
+                } catch (NumberFormatException e) {
+                    Log.e(TAG, "Invalid ID format in CSV row: " + row[1], e);
+                }
+            }
+        }
+        return maxID;
+    }
 
 
 }
