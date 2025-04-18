@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.utsa.threadly.R;
+import edu.utsa.threadly.RandomStuff.OutfitItem;
 
 public class OutfitAdapter extends RecyclerView.Adapter<OutfitAdapter.OutfitViewHolder> {
     private List<String> outfitItems;

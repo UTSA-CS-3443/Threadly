@@ -1,4 +1,4 @@
-package edu.utsa.threadly.Outfit;
+package edu.utsa.threadly.RandomStuff;
 
 public class OutfitItem {
     private final String title;
