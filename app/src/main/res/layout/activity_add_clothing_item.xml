@@ -43,6 +43,7 @@
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/baseline_add_a_photo_24"
         android:text="Add Image"
+        android:id="@+id/add_image_button"
         />
 
     <Button
