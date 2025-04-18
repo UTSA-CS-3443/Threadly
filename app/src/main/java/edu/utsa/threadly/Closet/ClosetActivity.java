@@ -77,11 +77,11 @@ public class ClosetActivity extends AppCompatActivity {
 
             // Optional styling
             closetButton.setAllCaps(false);
-            closetButton.setTextSize(18);
+            closetButton.setTextSize(20);
             closetButton.setPadding(20, 20, 20, 20);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
+                    dpToPx(100)
             );
             params.setMargins(20, 10, 20, 10);
             closetButton.setLayoutParams(params);
@@ -96,6 +96,10 @@ public class ClosetActivity extends AppCompatActivity {
 
             closetContainer.addView(closetButton);
         }
+    }
+    private int dpToPx(int dp) {
+        float density = getResources().getDisplayMetrics().density;
+        return Math.round(dp * density);
     }
 
     @Override
