@@ -1,10 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="24dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ClothingItem.AddClothingItemActivity">
+    android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/image_placeholder"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="48dp"
+        android:layout_gravity="center"
+        android:background="@android:color/darker_gray"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher_background" />
+
+    <EditText
+        android:id="@+id/clothingItemNameInput"
+        android:hint="Enter Title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:padding="12dp"
+        android:background="@android:drawable/editbox_background" />
+    <EditText
+        android:id="@+id/clothingItemCategoryInput"
+        android:hint="Enter Category"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:padding="12dp"
+        android:background="@android:drawable/editbox_background" />
+    <EditText
+        android:id="@+id/clothingItemDescriptionInput"
+        android:hint="Enter Description"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:padding="12dp"
+        android:background="@android:drawable/editbox_background" />
+
+    <Button
+        android:id="@+id/confirmButton"
+        android:layout_marginTop="24dp"
+        android:text="Create Clothing Item"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        />
+</LinearLayout>
