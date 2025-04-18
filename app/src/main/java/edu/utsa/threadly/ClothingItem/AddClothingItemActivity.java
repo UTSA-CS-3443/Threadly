@@ -23,13 +23,15 @@ public class AddClothingItemActivity extends AppCompatActivity {
 
     private EditText itemNameInput;
     private Button confirmButton;
+    private EditText itemCategoryInput;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_add_clothing_item);
 
-        itemNameInput = findViewById(R.id.itemNameInput);
+        itemNameInput = findViewById(R.id.clothingItemNameInput);
+        itemCategoryInput = findViewById(R.id.clothingItemCategoryInput);
         confirmButton = findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +46,7 @@ public class AddClothingItemActivity extends AppCompatActivity {
     }
     public void pushed(){
         String closetName = itemNameInput.getText().toString().trim();
+        String closetType = itemCategoryInput.getText().toString().trim();
         if (closetName.isEmpty()) {
             Toast.makeText(AddClothingItemActivity.this, "Enter a closet name", Toast.LENGTH_SHORT).show();
             return;
