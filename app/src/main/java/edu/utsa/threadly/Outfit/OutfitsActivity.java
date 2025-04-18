@@ -79,7 +79,7 @@ public class OutfitsActivity extends AppCompatActivity {
         // Immediately create a button for the new closet
         outfitsSetupButton(outfit);
             }
-        }, 200);
+        }, 600);
 
 
         // Optional: Show confirmation
@@ -92,12 +92,8 @@ public class OutfitsActivity extends AppCompatActivity {
     private void outfitsSetupButton(Outfit outfit) {
         // Create a layout object
         LinearLayout rootLayout = findViewById(R.id.OutfitContainer);
-        MaterialButton myButton = new MaterialButton(this);
+        Button myButton = new Button(this);
         myButton.setText(outfit.getName());
-        myButton.setTextColor(Color.WHITE);
-        myButton.setCornerRadius(100);
-        myButton.setWidth(5);
-        myButton.setBackgroundColor(ContextCompat.getColor(this, R.color.black));
         myButton.setTag(outfit);
         rootLayout.addView(myButton);
 

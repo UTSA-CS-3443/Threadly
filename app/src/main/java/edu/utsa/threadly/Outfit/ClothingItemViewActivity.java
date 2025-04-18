@@ -38,10 +38,10 @@ public class ClothingItemViewActivity extends AppCompatActivity {
     private Button addItemButton;
     private int itemCounter = 0;
     private final ClothingItem[] hardcodedItems = {
-            new ClothingItem(7, "Black Fedora", "black_fedora", "hat"),
-            new ClothingItem(7, "White Button Up", "white_button_up", "shirt"),
-            new ClothingItem(7, "Black Vest", "black_vest", "vest"),
-            new ClothingItem(7, "Black Tie", "black_tie", "tie"),
+            new ClothingItem(7, "Hat", "black_fedora", "hat"),
+            new ClothingItem(7, "Shirt", "white_button_up", "shirt"),
+            new ClothingItem(7, "Vest", "black_vest", "vest"),
+            new ClothingItem(7, "Tie", "black_tie", "tie"),
             new ClothingItem(7, "Default", "funny_cat", "?")
     };
 
@@ -86,7 +86,7 @@ public class ClothingItemViewActivity extends AppCompatActivity {
             }
 
                 }
-            }, 200);
+            }, 600);
         });
     }
 

@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.hardware.camera2.params.BlackLevelPattern;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -41,7 +42,7 @@ public class ClosetActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_closet);
-
+        //addClosetButton.setBackgroundColor(Color.BLACK);
 
 
         addClosetButton = findViewById(R.id.addClosetButton);
@@ -92,11 +93,11 @@ public class ClosetActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Closet closet = new Closet(3, "Chicago");
+                Closet closet = new Closet(3, "Closet");
                 closetManager.addCloset(closet);
                 closetsSetupButton(closet);
             }
-        }, 300);
+        }, 600);
 
 
         // Immediately create a button for the new closet
@@ -113,12 +114,8 @@ public class ClosetActivity extends AppCompatActivity {
     private void closetsSetupButton(Closet closet) {
         // Create a layout object
         LinearLayout rootLayout = findViewById(R.id.closetContainer);
-        MaterialButton myButton = new MaterialButton(this);
+        Button myButton = new Button(this);
         myButton.setText(closet.getName());
-        myButton.setTextColor(Color.WHITE);
-        myButton.setCornerRadius(100);
-        myButton.setWidth(5);
-        myButton.setBackgroundColor(ContextCompat.getColor(this, R.color.black));
         myButton.setTag(closet);
         rootLayout.addView(myButton);
 
