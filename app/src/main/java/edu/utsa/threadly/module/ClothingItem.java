@@ -12,6 +12,8 @@ public class ClothingItem {
     //type will be designated by the user of the app when inputting clothing details
     private String type;
 
+
+
     ClothingItem(int id, String name, String picture,String type){
         this.outfitId = id;
         this.picture = picture;
