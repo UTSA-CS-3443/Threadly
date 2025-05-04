@@ -24,7 +24,7 @@ public class Outfit {
 
     private ArrayList<ClothingItem> clothingItems;
 
-    Outfit(int closetId, int outfitId, String name){
+    public Outfit(int closetId, int outfitId, String name){
         this.closetId = closetId;
         this.outfitId = outfitId;
         this.name = name;

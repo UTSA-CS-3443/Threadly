@@ -13,14 +13,13 @@ import java.util.ArrayList;
 
 import edu.utsa.threadly.R;
 import edu.utsa.threadly.module.CsvFileManager;
+import edu.utsa.threadly.module.Outfit;
 
 public class OutfitsActivity extends AppCompatActivity {
 
     private static final String TAG = "OutfitsActivity";
     private CsvFileManager csvFileManager;
     private OutfitAdapter outfitAdapter;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +41,10 @@ public class OutfitsActivity extends AppCompatActivity {
         // Load outfits from CSV
         String filename = "Outfits.csv";
         csvFileManager = CsvFileManager.loadCsvToLocal(this, filename);
-        ArrayList<String> outfits = loadOutfitsForCloset(closetId);
+        ArrayList<Outfit> outfits = loadOutfitsForCloset(closetId);
 
         // Set up the adapter
-        outfitAdapter = new OutfitAdapter(this,outfits);
+        outfitAdapter = new OutfitAdapter(this, outfits);
         outfitsRecyclerView.setAdapter(outfitAdapter);
 
         findViewById(R.id.addOutfitButton).setOnClickListener(v -> {
@@ -53,8 +52,6 @@ public class OutfitsActivity extends AppCompatActivity {
             intent.putExtra("closetId", closetId);
             startActivityForResult(intent, 1);
         });
-
-
     }
 
     @Override
@@ -73,8 +70,8 @@ public class OutfitsActivity extends AppCompatActivity {
                 return;
             }
             Log.d(TAG, "Reloading outfits for closet ID: " + closetId);
-            ArrayList<String> outfits = loadOutfitsForCloset(closetId);
-            for (String outfit : outfits) {
+            ArrayList<Outfit> outfits = loadOutfitsForCloset(closetId);
+            for (Outfit outfit : outfits) {
                 Log.d("test", "Outfit: " + outfit);
             }
 
@@ -83,25 +80,25 @@ public class OutfitsActivity extends AppCompatActivity {
         }
     }
 
-
-    private ArrayList<String> loadOutfitsForCloset(int closetId) {
+    private ArrayList<Outfit> loadOutfitsForCloset(int closetId) {
         ArrayList<String[]> rows = csvFileManager.getRows();
-        ArrayList<String> outfits = new ArrayList<>();
+        ArrayList<Outfit> outfits = new ArrayList<>();
         Log.d("OutfitActivity", "Rows size: " + rows.size());
         Log.d("OutfitActivity", "ClosetId: " + closetId);
         for (int i = 1; i < rows.size(); i++) {
             String[] row = rows.get(i);
-            //Log.d("OutfitActivity","Row "+i+": " + String.join(", ", row));
             if (row.length >= 3) {
                 try {
                     int rowClosetId = Integer.parseInt(row[1].trim());
                     Log.d("OutfitActivity", "Row closet ID: " + rowClosetId);
                     if (rowClosetId == closetId) {
-                        Log.d("OutfitActivity", "Adding outfit: " + row[0]);
-                        outfits.add(row[0].trim());
+                        String outfitName = row[0].trim();
+                        int outfitId = Integer.parseInt(row[2].trim());
+                        Log.d("OutfitActivity", "Adding outfit: " + outfitName);
+                        outfits.add(new Outfit(closetId, outfitId, outfitName));
                     }
                 } catch (NumberFormatException e) {
-                    Log.e(TAG, "Invalid closet ID format in CSV row: " + row[1], e);
+                    Log.e(TAG, "Invalid format in CSV row: " + String.join(", ", row), e);
                 }
             } else {
                 Log.e(TAG, "Invalid row in CSV file: " + String.join(", ", row));
