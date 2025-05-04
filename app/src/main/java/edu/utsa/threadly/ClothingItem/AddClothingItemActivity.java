@@ -7,6 +7,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -21,9 +22,11 @@ import java.util.Locale;
 
 import edu.utsa.threadly.R;
 
-public class AddClothingItem extends AppCompatActivity {
+public class AddClothingItemActivity extends AppCompatActivity {
 
     private EditText outfitNameInput;
+    private Spinner outfitCategoryInput;
+    private EditText outfitDescriptionInput;
     private Button confirmButton, cameraButton;
     private static ArrayList<String[]> outfitData = new ArrayList<>();
     private Uri imageUri; // To store the captured image URI
@@ -34,8 +37,9 @@ public class AddClothingItem extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_add_clothing_item);
 
-        //TODO fix the names
-        outfitNameInput = findViewById(R.id.outfitNameInput);
+        outfitNameInput = findViewById(R.id.clothingItemNameInput);
+        outfitDescriptionInput = findViewById(R.id.clothingItemDescriptionInput);
+        outfitCategoryInput = findViewById(R.id.clothingItemCategoryInput);
         Button confirmButton = findViewById(R.id.confirmButton);
         Button cameraButton = findViewById(R.id.add_image_button);
 
@@ -59,6 +63,11 @@ public class AddClothingItem extends AppCompatActivity {
 
             if (imageUri == null) {
                 Toast.makeText(this, "Capture an image first", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (outfitCategoryInput.getSelectedItemPosition() == 0) {
+                Toast.makeText(this, "Select a category", Toast.LENGTH_SHORT).show();
                 return;
             }
 

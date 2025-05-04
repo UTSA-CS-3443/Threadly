@@ -13,14 +13,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="16dp">
+        android:padding="20dp">
 
         <TextView
             android:id="@+id/outfit_circle"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:gravity="center"
-            android:textColor="@android:color/white"
+            android:textColor="@color/material_dynamic_primary0"
             android:textSize="24sp"
             android:background="@drawable/circle_background"
             android:text="1" />
