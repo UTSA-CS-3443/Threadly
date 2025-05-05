@@ -76,10 +76,10 @@ public class OutfitViewActivity extends AppCompatActivity {
         footwearRecyclerView.setLayoutManager(new CarouselLayoutManager());
         otherRecyclerView.setLayoutManager(new CarouselLayoutManager());
 
-        topsRecyclerView.setAdapter(new OutfitViewAdapter(this, tops));
-        bottomsRecyclerView.setAdapter(new OutfitViewAdapter(this, bottoms));
-        footwearRecyclerView.setAdapter(new OutfitViewAdapter(this, footwear));
-        otherRecyclerView.setAdapter(new OutfitViewAdapter(this, other));
+        topsRecyclerView.setAdapter(new OutfitViewAdapter(this, tops, "tops"));
+        bottomsRecyclerView.setAdapter(new OutfitViewAdapter(this, bottoms, "bottoms"));
+        footwearRecyclerView.setAdapter(new OutfitViewAdapter(this, footwear, "footwear"));
+        otherRecyclerView.setAdapter(new OutfitViewAdapter(this, other,"other"));
     }
 
     private ArrayList<ClothingItem> loadClothingItemsForOutfit(int outfitId) {

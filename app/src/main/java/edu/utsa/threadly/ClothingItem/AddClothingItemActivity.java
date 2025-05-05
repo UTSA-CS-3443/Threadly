@@ -39,12 +39,12 @@ public class AddClothingItemActivity extends AppCompatActivity {
 
         outfitNameInput = findViewById(R.id.clothingItemNameInput);
         outfitDescriptionInput = findViewById(R.id.clothingItemDescriptionInput);
-        outfitCategoryInput = findViewById(R.id.clothingItemCategoryInput);
+//        outfitCategoryInput = findViewById(R.id.clothingItemCategoryInput);
         Button confirmButton = findViewById(R.id.confirmButton);
         Button cameraButton = findViewById(R.id.add_image_button);
 
-        int closetId = getIntent().getIntExtra("closetId", -1);
-        if (closetId == -1) {
+        int outfitId = getIntent().getIntExtra("outfitId", -1);
+        if (outfitId == -1) {
             Toast.makeText(this, "Error: Invalid closet ID", Toast.LENGTH_SHORT).show();
             Log.e("AddOutfit", "Error: Invalid closet ID");
             finish();
@@ -70,9 +70,9 @@ public class AddClothingItemActivity extends AppCompatActivity {
                 Toast.makeText(this, "Select a category", Toast.LENGTH_SHORT).show();
                 return;
             }
+            String category = getIntent().getStringExtra("category");
 
-            int outfitId = outfitData.size();
-            String[] newRow = {outfitName, String.valueOf(closetId), String.valueOf(outfitId), imageUri.toString()};
+            String[] newRow = {outfitName, String.valueOf(outfitId), imageUri.toString(), category};
             outfitData.add(newRow);
 
             Log.d("AddOutfitActivity", "Outfit added: " + outfitName + ", Image URI: " + imageUri);

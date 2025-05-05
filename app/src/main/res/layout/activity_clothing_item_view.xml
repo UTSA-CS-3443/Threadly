@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:padding="24dp"
@@ -9,7 +11,7 @@
 
     <!-- Image Placeholder -->
     <ImageView
-        android:id="@+id/image_placeholder"
+        android:id="@+id/image"
         android:layout_width="240dp"
         android:layout_height="240dp"
         android:layout_marginTop="48dp"
@@ -33,6 +35,7 @@
         android:backgroundTint="#F8F0FA">
 
         <TextView
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Title"
@@ -41,19 +44,20 @@
             android:textColor="#000000" />
 
         <TextView
+            android:id="@+id/category"
             android:text="Description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp" />
 
         <TextView
-            android:text="Date Added"
+            tools:text="Date Added"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp" />
 
         <TextView
-            android:text="Rating"
+            tools:text="Rating"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp" />

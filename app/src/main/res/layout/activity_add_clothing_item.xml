@@ -25,16 +25,16 @@
         android:padding="12dp"
         android:background="@android:drawable/editbox_background" />
 
-    <Spinner
-        android:id="@+id/clothingItemCategoryInput"
-        style="@android:style/Widget.Material.Spinner"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@android:drawable/editbox_background"
-        android:gravity="center"
-        android:padding="12dp"
-        android:spinnerMode="dropdown"
-        android:textAlignment="center" />
+<!--    <Spinner-->
+<!--        android:id="@+id/clothingItemCategoryInput"-->
+<!--        style="@android:style/Widget.Material.Spinner"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:background="@android:drawable/editbox_background"-->
+<!--        android:gravity="center"-->
+<!--        android:padding="12dp"-->
+<!--        android:spinnerMode="dropdown"-->
+<!--        android:textAlignment="center" />-->
 <!--    <EditText-->
 <!--        android:id="@+id/clothingItemCategoryInput"-->
 <!--        android:hint="Enter Category"-->

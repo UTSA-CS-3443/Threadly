@@ -1,6 +1,8 @@
 package edu.utsa.threadly.ClothingItem;
 
 import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,5 +26,17 @@ public class ClothingItemViewActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        //TODO: Add clothing item image
+        //TODO: finish implementing clothing item view activity
+
+        TextView clothingItemName = findViewById(R.id.title);
+        TextView clothingItemDescription = findViewById(R.id.category);
+        ImageView clothingItemImage = findViewById(R.id.image);
+
+        String clothingItemNameString = getIntent().getStringExtra("clothingItemName");
+        String clothingItemDescriptionString = getIntent().getStringExtra("clothingItemCategory");
+        String clothingItemImageString = getIntent().getStringExtra("clothingItemImage");
+
     }
 }

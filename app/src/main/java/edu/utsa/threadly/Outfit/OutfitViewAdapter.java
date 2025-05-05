@@ -15,16 +15,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import edu.utsa.threadly.ClothingItem.AddClothingItemActivity;
+import edu.utsa.threadly.ClothingItem.ClothingItemViewActivity;
 import edu.utsa.threadly.R;
 import edu.utsa.threadly.module.ClothingItem;
 
 public class OutfitViewAdapter extends RecyclerView.Adapter<OutfitViewAdapter.OutfitViewHolder> {
     private List<ClothingItem> outfitItems;
     private final Context context;
+    private final String category;
 
-    public OutfitViewAdapter(Context context, List<ClothingItem> outfitItems) {
+    public OutfitViewAdapter(Context context, List<ClothingItem> outfitItems, String category) {
         this.context = context;
         this.outfitItems = outfitItems;
+        this.category = category;
     }
 
     public void updateData(List<ClothingItem> newOutfits) {
@@ -56,10 +59,18 @@ public class OutfitViewAdapter extends RecyclerView.Adapter<OutfitViewAdapter.Ou
 
     @Override
     public void onBindViewHolder(@NonNull OutfitViewHolder holder, int position) {
+
+
+        Log.d("Position", "Position: " + position);
+
         if (position == outfitItems.size()) {
+            Log.d("OutfitViewAdapter", "Binding add button");
             // Add button
             holder.itemView.setOnClickListener(v -> {
+                Log.d("OutfitViewAdapter", "Add button clicked");
                 Intent intent = new Intent(context, AddClothingItemActivity.class);
+                intent.putExtra("outfitId", 1); // -1 indicates no outfit
+                intent.putExtra("category", category); // Pass the category if needed
                 context.startActivity(intent);
             });
             return;
@@ -68,6 +79,7 @@ public class OutfitViewAdapter extends RecyclerView.Adapter<OutfitViewAdapter.Ou
         // Regular clothing item
         ClothingItem item = outfitItems.get(position);
         String imageUriString = item.getPicture();
+
 
         try {
             if (imageUriString != null && !imageUriString.isEmpty()) {
@@ -88,8 +100,11 @@ public class OutfitViewAdapter extends RecyclerView.Adapter<OutfitViewAdapter.Ou
         }
 
         holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, OutfitViewActivity.class);
-            intent.putExtra("outfitName", item.getName());
+            Log.d("OutfitViewAdapter", "Item clicked: " + item.getName());
+            Intent intent = new Intent(context, ClothingItemViewActivity.class);
+            intent.putExtra("clothingItemName", item.getName());
+            intent.putExtra("outfitCategory", item.getType());
+            intent.putExtra("clothingItemImage", item.getPicture());
             context.startActivity(intent);
         });
     }

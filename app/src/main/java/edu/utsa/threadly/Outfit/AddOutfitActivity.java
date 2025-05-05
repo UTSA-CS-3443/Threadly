@@ -56,7 +56,7 @@ public class AddOutfitActivity extends AppCompatActivity {
             int outfit_id = csvFileManager.getRows().size()-1; // Caution: This assumes no deletions
 
             // Create and add the new row
-            String[] newRow = { outfitName,String.valueOf(closetId),String.valueOf(outfit_id) };
+            String[] newRow = { outfitName,String.valueOf(closetId),String.valueOf(outfit_id)};
             csvFileManager.addRow(newRow);
             csvFileManager.saveFile();
             Log.e("Rumber", " " + csvFileManager.getRows().size());
