@@ -1,6 +1,8 @@
 package edu.utsa.threadly.ClothingItem;
 
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,12 +33,37 @@ public class ClothingItemViewActivity extends AppCompatActivity {
         //TODO: finish implementing clothing item view activity
 
         TextView clothingItemName = findViewById(R.id.title);
-        TextView clothingItemDescription = findViewById(R.id.category);
+        TextView clothingItemCategory = findViewById(R.id.category);
         ImageView clothingItemImage = findViewById(R.id.image);
+
+        Log.d("clothing item category", "category: " + clothingItemCategory);
 
         String clothingItemNameString = getIntent().getStringExtra("clothingItemName");
         String clothingItemDescriptionString = getIntent().getStringExtra("clothingItemCategory");
         String clothingItemImageString = getIntent().getStringExtra("clothingItemImage");
+        
+        clothingItemName.setText(clothingItemNameString);
+        clothingItemCategory.setText(clothingItemDescriptionString);
+
+        try {
+            if (clothingItemImageString != null && !clothingItemImageString.isEmpty()) {
+                Uri imageUri = Uri.parse(clothingItemImageString);
+                if (imageUri.getScheme() != null && !imageUri.getScheme().isEmpty()) {
+                    clothingItemImage.setImageURI(imageUri);
+                } else {
+                    int resId = this.getResources().getIdentifier(
+                            clothingItemImageString, "drawable", this.getPackageName());
+                    clothingItemImage.setImageResource(resId != 0 ? resId : R.drawable.ic_launcher_background);
+                }
+            } else {
+                clothingItemImage.setImageResource(R.drawable.ic_launcher_background);
+            }
+        } catch (Exception e) {
+            Log.e("OutfitViewAdapter", "Image load failed", e);
+            clothingItemImage.setImageResource(R.drawable.ic_launcher_background);
+        }
 
     }
+    
+    
 }

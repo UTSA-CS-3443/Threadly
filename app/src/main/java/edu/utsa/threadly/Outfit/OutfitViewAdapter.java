@@ -103,7 +103,7 @@ public class OutfitViewAdapter extends RecyclerView.Adapter<OutfitViewAdapter.Ou
             Log.d("OutfitViewAdapter", "Item clicked: " + item.getName());
             Intent intent = new Intent(context, ClothingItemViewActivity.class);
             intent.putExtra("clothingItemName", item.getName());
-            intent.putExtra("outfitCategory", item.getType());
+            intent.putExtra("clothingItemCategory", item.getType());
             intent.putExtra("clothingItemImage", item.getPicture());
             context.startActivity(intent);
         });
