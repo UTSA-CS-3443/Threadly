@@ -13,7 +13,13 @@ public class ClothingItem {
     private String type;
 
 
-
+    /**
+     * Represents a clothing item within the app with it's correspond name type and picture id which is used to track the picture uri.
+     * @param id
+     * @param name
+     * @param picture
+     * @param type
+     */
     ClothingItem(int id, String name, String picture,String type){
         this.outfitId = id;
         this.picture = picture;
@@ -22,43 +28,77 @@ public class ClothingItem {
 
 
     }
+
+    /**
+     * Returns an id that links the singular clothing item to its corresponding outfit
+     * @return
+     */
     public int getId() {
         return outfitId;
     }
 
+    /**
+     * Sets the id that links  the singular clothing item to its corresponding outfit
+     * @param id
+     */
+
     public void setId(int id) {
         this.outfitId = id;
     }
+    /**
+     * returns the name of the clothing item
+     */
 
     public String getName() {
         return name;
     }
 
+    /**
+     * sets the name of the clothing item
+     * @param name
+     */
+
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * gets the picture id or image uri of the clothing item
+     * @return
+     */
     public String getPicture() {
         return picture;
     }
 
+    /**
+     * sets the picture id or imgage uir of the clothing item
+     * @param picture
+     */
     public void setPicture(String picture) {
         this.picture = picture;
     }
 
+    /**
+     * sets the type of clothing item. Choice between Top, Bottom, Shoes, Miscellaneous
+     * @return
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     * sets the type of clothing item. Choice between Top, Bottom, Shoes, Miscellaneous
+     * @param type
+     */
     public void setType(String type) {
         this.type = type;
     }
 
-    public String[] toStringArray(){
-        return new String[]{this.name,String.format("%d"),String.format("%d", this.outfitId),this.picture,this.type};
-
-
-    }
+    /**
+     * Changes inseted row from csv into a clothing item object to be better utilized within program
+     * @param row
+     * @return
+     */
 
     public static ClothingItem csvToItem(String[] row) {
         if (row == null || row.length < 4) {

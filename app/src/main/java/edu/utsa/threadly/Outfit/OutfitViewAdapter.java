@@ -19,6 +19,9 @@ import edu.utsa.threadly.ClothingItem.ClothingItemViewActivity;
 import edu.utsa.threadly.R;
 import edu.utsa.threadly.module.ClothingItem;
 
+/**
+ * implements a recycler view for the outfit view cards
+ */
 public class OutfitViewAdapter extends RecyclerView.Adapter<OutfitViewAdapter.OutfitViewHolder> {
     private List<ClothingItem> outfitItems;
     private final Context context;

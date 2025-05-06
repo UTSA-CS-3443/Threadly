@@ -13,6 +13,10 @@ import java.util.List;
 
 import edu.utsa.threadly.R;
 
+/**
+ * Card adapter helps to store the clothing item cards for a recycler view
+ */
+
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder> {
     private final List<CardItem> cardItems;
 

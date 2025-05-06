@@ -1,5 +1,8 @@
 package edu.utsa.threadly.RandomStuff;
 
+/**
+ * card for displaying the clothing items
+ */
 public class CardItem {
     private final String title;
     private final String description;

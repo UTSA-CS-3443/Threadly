@@ -15,6 +15,10 @@ import edu.utsa.threadly.Outfit.OutfitsActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * Threadly home screen with a button to take you into the app
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -32,6 +32,10 @@ CsvFileManager name = loadCsvToLocal(activity,filename)
 
 
  */
+
+/**
+ * Used to manage local data saving and loading from it
+ */
 public class CsvFileManager {
 
     private static final String TAG = "CsvFileManager";
@@ -88,7 +92,7 @@ public class CsvFileManager {
     }
 
     /**
-     *
+     *loads the csv into the the rows double array
      * @param in
      */
     private void loadCsv(InputStream in) {
@@ -168,6 +172,12 @@ public class CsvFileManager {
 
     }
 
+    /**
+     * grabs a row with a given name at a given index
+     * @param key
+     * @param columnIndex
+     * @return
+     */
     public String[] grabRow(String key, int columnIndex) {
         for (int i = 0; i < rows.size(); i++) {
             String[] row = rows.get(i);
@@ -180,6 +190,11 @@ public class CsvFileManager {
         return null;
     }
 
+    /**
+     * gets the max id so that new closets or outfits can get new ids that don't conflict with previous ones
+     * @param coumnIndex
+     * @return
+     */
     public int getMaxID(int coumnIndex) {
         int maxID = -1;
         Log.d(TAG, "coumnIndex: " + coumnIndex);
