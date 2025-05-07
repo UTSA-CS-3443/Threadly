@@ -90,11 +90,18 @@ public class AddClothingItemActivity extends AppCompatActivity {
 
 
             String category = getIntent().getStringExtra("category");
+            CsvFileManager itemManager = CsvFileManager.loadCsvToLocal(AddClothingItemActivity.this, "ClothingItems.csv");
 
             String[] newRow = {outfitName, String.valueOf(outfitId), imageUri.toString(), category};
             outfitData.add(newRow);
+            itemManager.addRow(newRow);
+            itemManager.saveFile();
+
+
 
             Log.d("AddClothingItemActivity", "Outfit added: " + outfitName + ", Image URI: " + imageUri);
+
+
 
             Toast.makeText(this, "Outfit added!", Toast.LENGTH_SHORT).show();
             setResult(RESULT_OK);
