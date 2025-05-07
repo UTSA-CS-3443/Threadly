@@ -67,4 +67,12 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="24dp"
         android:text="Create Clothing Item" />
+    <Button
+        android:id="@+id/deleteButton"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="24dp"
+        android:text="Delete Clothing Item" />
 </LinearLayout>

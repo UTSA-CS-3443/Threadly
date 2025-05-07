@@ -30,7 +30,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+import edu.utsa.threadly.Outfit.AddOutfitActivity;
 import edu.utsa.threadly.R;
+import edu.utsa.threadly.module.CsvFileManager;
 
 public class AddClothingItemActivity extends AppCompatActivity {
 
@@ -39,7 +41,7 @@ public class AddClothingItemActivity extends AppCompatActivity {
     private EditText outfitNameInput;
     private Spinner outfitCategoryInput;
     private EditText outfitDescriptionInput;
-    private Button confirmButton, cameraButton;
+    private Button confirmButton, cameraButton,deleteButton;
     private static ArrayList<String[]> outfitData = new ArrayList<>();
     private Uri imageUri;
 
@@ -57,6 +59,7 @@ public class AddClothingItemActivity extends AppCompatActivity {
         outfitDescriptionInput = findViewById(R.id.clothingItemDescriptionInput);
         confirmButton = findViewById(R.id.confirmButton);
         cameraButton = findViewById(R.id.add_image_button);
+        deleteButton = findViewById(R.id.deleteButton);
 
         int outfitId = getIntent().getIntExtra("outfitId", -1);
         if (outfitId == -1) {
@@ -97,7 +100,27 @@ public class AddClothingItemActivity extends AppCompatActivity {
             setResult(RESULT_OK);
             finish();
         });
+
+        deleteButton.setOnClickListener(v -> {
+            String clothingItemName = outfitNameInput.getText().toString().trim();
+
+            if (clothingItemName.isEmpty()) {
+                Toast.makeText(this, "Enter an outfit name", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+
+            CsvFileManager itemManager = CsvFileManager.loadCsvToLocal(AddClothingItemActivity.this, "ClothingItems.csv");
+            itemManager.deleteRowsByValue(clothingItemName,0);
+            Log.d("AddClothingItemActivity", "Clothing deleted: " + clothingItemName + ", Image URI: " + imageUri);
+
+            Toast.makeText(this, "Clothing item deleted!", Toast.LENGTH_SHORT).show();
+            setResult(RESULT_OK);
+            finish();
+        });
     }
+
+
 
     private void setupCameraLauncher() {
         cameraLauncher = registerForActivityResult(
