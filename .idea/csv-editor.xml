@@ -3,6 +3,27 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="$USER_HOME$/Library/Caches/Google/AndroidStudio2024.3/device-explorer/Google Pixel 8/_/data/data/edu.utsa.threadly/files/Clothing_Items.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Library/Caches/Google/AndroidStudio2024.3/device-explorer/Google Pixel 8/_/data/data/edu.utsa.threadly/files/Outfits.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Library/Caches/Google/AndroidStudio2024.3/device-explorer/Medium Phone API 35/_/data/data/edu.utsa.threadly/files/Outfits.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/app/src/main/assets/Closets.csv">
           <value>
             <Attribute>
