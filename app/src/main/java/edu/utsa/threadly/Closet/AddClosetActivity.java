@@ -42,7 +42,7 @@ public class AddClosetActivity extends Activity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String closetName = closetNameInput.getText().toString();
+                String closetName = closetNameInput.getText().toString().trim();
 
                 if (closetName.isEmpty()) {
                     Toast.makeText(AddClosetActivity.this, "Enter a closet name", Toast.LENGTH_SHORT).show();
@@ -96,7 +96,16 @@ public class AddClosetActivity extends Activity {
                 CsvFileManager csvFileManager = CsvFileManager.loadCsvToLocal(AddClosetActivity.this, "Closets.csv");
 
                 // Generate a new unique ID (based on size of existing rows)
-                int newId = csvFileManager.getRows().size()-1;  // Caution: This assumes no deletions
+                ArrayList<String[]> list =csvFileManager.getRows();
+                int max = 0;
+                for(int i = 1; i<csvFileManager.getRows().size(); i++ ){
+                    String[] row = list.get(i);
+                    int num = Integer.parseInt(row[1].trim());
+                    if(num > max){
+                        max = num;
+                    }
+                }
+                int newId = max+1;  // Caution: This assumes no deletions
 
                 // Create and add the new row
                 String[] newRow = { closetName, String.valueOf(newId) };

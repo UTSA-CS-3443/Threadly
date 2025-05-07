@@ -5,18 +5,28 @@ import java.util.ArrayList;
 public class ClosetManager {
     private static ArrayList<Closet> closets;
 
+    private int closetCount;
+
     /**
      *  Helps to manage and store closet objects
      */
     ClosetManager(){
-        this.closets = new ArrayList<Closet>();
+        this.closets = new ArrayList<Closet>()
+        ;
     }
 
     /**
      * grabs the whole closet array
      * @return
      */
-    
+
+    public void setCount(){
+        this.closetCount = closets.size();
+    }
+
+    public void addCount(){
+        this.closetCount++;
+    }
     public ArrayList<Closet> getClosets() {
         return this.closets;
     }

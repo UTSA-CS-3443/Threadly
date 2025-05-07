@@ -66,7 +66,7 @@ public class CsvFileManager {
     private void initializeFile() {
         SharedPreferences prefs = activity.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         boolean isFirstRun = prefs.getBoolean(firstRunKey, true);
-
+        //boolean isFirstRun = true;
 
         if (isFirstRun) {
             Log.i(TAG, "First run for " + filename + ": loading from assets.");
