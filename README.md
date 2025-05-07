@@ -1,26 +1,28 @@
 # Threadly
-Repo for Bongo Cat
-# Closet Manager App
+## Closet Manager App
 
-# Description
+## Description
 
-The Closet Manager app is an Android application that allows users to view and manage a list of clothing closets. The main screen displays a scrollable list of default closets loaded from a CSV file (`Closets.csv`), and users can add new closets through a secondary screen. The app is designed with simplicity in mind, avoiding RecyclerViews, and instead dynamically adds closet buttons to the main layout. Each closet button is functional and designed to eventually lead to a separate outfit management view.
-
----
-
-# Contributors
-
-- Alec
-- 
-- 
-- Hunter
+Threadly is an Android application that allows users to view and manage a list of customized closets. On the main screen, users can access their saved closets and add new closets, giving them a name for ease of use. Inside each closet, the user can add any outfits they create and give them names as well. To build an outfit, the user can take a picture of each piece of clothing making up that outfit and save it locally to the app. These articles of clothing will be displayed in the outfit view and the user can add multiple to each outfit, or the user can delete any of them.
 
 ---
 
-# How to Run the App
+## Contributors
 
-# Requirements:
+- Ryan Bonnet
+- Alek Brysch
+- Robert Farrel
+- Hunter Spencer
+
+---
+
+## How to Run the App
+
+Open the app, press the continue arrow on the entry screen. Select the closet you want to view, or add/delete a closet. Select an outfit you want to view or create a blank outfit. Build the outfit by taking a picture of each article of clothing to view it in the app.
+
+---
+
+### Requirements:
+
 - Android Version 15
-- Android Studio
-- Minimum SDK: 
 - Internet Access: Not required
