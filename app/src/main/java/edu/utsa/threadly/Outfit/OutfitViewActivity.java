@@ -25,6 +25,7 @@ public class OutfitViewActivity extends AppCompatActivity {
 
         String outfitName = getIntent().getStringExtra("outfitName");
         int outfitId = getIntent().getIntExtra("outfitId", -1);
+        Log.d("OutfitViewActivity", "outfitId is:"+ outfitId);
 
         ArrayList<ClothingItem> clothingItems = loadClothingItemsForOutfit(outfitId);
 
