@@ -51,7 +51,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="24dp"
         android:text="Create Clothing Item" />
-    <Button
+    <!--<Button
         android:id="@+id/deleteButton"
         style="@style/Widget.Material3.Button.OutlinedButton"
         android:textColor="@color/material_dynamic_primary30"
@@ -59,5 +59,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="24dp"
-        android:text="Delete Clothing Item" />
+        android:text="Delete Clothing Item" />-->
 </LinearLayout>

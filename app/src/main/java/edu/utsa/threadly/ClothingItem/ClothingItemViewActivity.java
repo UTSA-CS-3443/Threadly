@@ -3,8 +3,10 @@ package edu.utsa.threadly.ClothingItem;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,8 +15,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import edu.utsa.threadly.R;
+import edu.utsa.threadly.module.CsvFileManager;
 
 public class ClothingItemViewActivity extends AppCompatActivity {
+
+    private Button deleteButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +40,7 @@ public class ClothingItemViewActivity extends AppCompatActivity {
         TextView clothingItemName = findViewById(R.id.title);
         TextView clothingItemCategory = findViewById(R.id.category);
         ImageView clothingItemImage = findViewById(R.id.image);
+        deleteButton = findViewById(R.id.deleteButton);
 
         Log.d("clothing item category", "category: " + clothingItemCategory);
 
@@ -63,7 +69,25 @@ public class ClothingItemViewActivity extends AppCompatActivity {
             clothingItemImage.setImageResource(R.drawable.ic_launcher_background);
         }
 
+        deleteButton.setOnClickListener(v -> {
+           // String clothingItemName = clothingItemNameString;
+
+            if (clothingItemNameString.isEmpty()) {
+                Toast.makeText(this, "Enter an outfit name", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+
+            CsvFileManager itemManager = CsvFileManager.loadCsvToLocal(ClothingItemViewActivity.this, "Clothing_Items.csv");
+            itemManager.deleteRowsByValue(clothingItemNameString,0);
+            Log.d("AddClothingItemActivity", "Clothing deleted: " + clothingItemNameString);
+            itemManager.saveFile();
+            Toast.makeText(this, "Clothing item deleted!", Toast.LENGTH_SHORT).show();
+            setResult(RESULT_OK);
+            finish();
+        });
+
     }
-    
+
     
 }

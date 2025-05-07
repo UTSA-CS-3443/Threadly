@@ -109,23 +109,7 @@ public class AddClothingItemActivity extends AppCompatActivity {
             finish();
         });
 
-        deleteButton.setOnClickListener(v -> {
-            String clothingItemName = outfitNameInput.getText().toString().trim();
 
-            if (clothingItemName.isEmpty()) {
-                Toast.makeText(this, "Enter an outfit name", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-
-            CsvFileManager itemManager = CsvFileManager.loadCsvToLocal(AddClothingItemActivity.this, "Clothing_Items.csv");
-            itemManager.deleteRowsByValue(clothingItemName,0);
-            Log.d("AddClothingItemActivity", "Clothing deleted: " + clothingItemName + ", Image URI: " + imageUri);
-
-            Toast.makeText(this, "Clothing item deleted!", Toast.LENGTH_SHORT).show();
-            setResult(RESULT_OK);
-            finish();
-        });
     }
 
 
