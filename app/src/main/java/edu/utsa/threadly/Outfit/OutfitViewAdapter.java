@@ -23,14 +23,16 @@ import edu.utsa.threadly.module.ClothingItem;
  * implements a recycler view for the outfit view cards
  */
 public class OutfitViewAdapter extends RecyclerView.Adapter<OutfitViewAdapter.OutfitViewHolder> {
+    private final int outfitId;
     private List<ClothingItem> outfitItems;
     private final Context context;
     private final String category;
 
-    public OutfitViewAdapter(Context context, List<ClothingItem> outfitItems, String category) {
+    public OutfitViewAdapter(Context context, List<ClothingItem> outfitItems, String category, int id) {
         this.context = context;
         this.outfitItems = outfitItems;
         this.category = category;
+        this.outfitId = id;
     }
 
     public void updateData(List<ClothingItem> newOutfits) {
@@ -72,8 +74,12 @@ public class OutfitViewAdapter extends RecyclerView.Adapter<OutfitViewAdapter.Ou
             holder.itemView.setOnClickListener(v -> {
                 Log.d("OutfitViewAdapter", "Add button clicked");
                 Intent intent = new Intent(context, AddClothingItemActivity.class);
-                intent.putExtra("outfitId", 1); // -1 indicates no outfit
+                /*Log.d("OutfitViewAdapter", "outfit position size:"+ outfitItems.size());
+                Log.d("OutfitViewAdapter", "outfit position id:"+ outfitItems.get(position).getId());
+                Log.d("OutfitViewAdapter", "outfit position id:"+ outfitItems.get(position));*/
+                intent.putExtra("outfitId",outfitId); // -1 indicates no outfit
                 intent.putExtra("category", category); // Pass the category if needed
+                Log.d("OutfitViewAdapter", "added"+ category);
                 context.startActivity(intent);
             });
             return;

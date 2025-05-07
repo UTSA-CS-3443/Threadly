@@ -62,6 +62,7 @@ public class AddClothingItemActivity extends AppCompatActivity {
         deleteButton = findViewById(R.id.deleteButton);
 
         int outfitId = getIntent().getIntExtra("outfitId", -1);
+        Log.d("AddClothingItemActivity", "outfitID:"+outfitId);
         if (outfitId == -1) {
             Toast.makeText(this, "Error: Invalid closet ID", Toast.LENGTH_SHORT).show();
             Log.e("AddOutfitActivity", "Error: Invalid closet ID");
@@ -90,7 +91,7 @@ public class AddClothingItemActivity extends AppCompatActivity {
 
 
             String category = getIntent().getStringExtra("category");
-            CsvFileManager itemManager = CsvFileManager.loadCsvToLocal(AddClothingItemActivity.this, "ClothingItems.csv");
+            CsvFileManager itemManager = CsvFileManager.loadCsvToLocal(AddClothingItemActivity.this, "Clothing_Items.csv");
 
             String[] newRow = {outfitName, String.valueOf(outfitId), imageUri.toString(), category};
             outfitData.add(newRow);
@@ -117,7 +118,7 @@ public class AddClothingItemActivity extends AppCompatActivity {
             }
 
 
-            CsvFileManager itemManager = CsvFileManager.loadCsvToLocal(AddClothingItemActivity.this, "ClothingItems.csv");
+            CsvFileManager itemManager = CsvFileManager.loadCsvToLocal(AddClothingItemActivity.this, "Clothing_Items.csv");
             itemManager.deleteRowsByValue(clothingItemName,0);
             Log.d("AddClothingItemActivity", "Clothing deleted: " + clothingItemName + ", Image URI: " + imageUri);
 

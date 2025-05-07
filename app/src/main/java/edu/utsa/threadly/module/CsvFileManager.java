@@ -67,6 +67,7 @@ public class CsvFileManager {
         SharedPreferences prefs = activity.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         boolean isFirstRun = prefs.getBoolean(firstRunKey, true);
 
+
         if (isFirstRun) {
             Log.i(TAG, "First run for " + filename + ": loading from assets.");
             try (InputStream assetStream = activity.getAssets().open(filename);
@@ -199,7 +200,7 @@ public class CsvFileManager {
         int maxID = -1;
         Log.d(TAG, "coumnIndex: " + coumnIndex);
         if(coumnIndex <= 0){
-            Log.w(TAG, "Column index must be greater than 0");
+            Log.w(TAG, "Column in3dex must be greater than 0");
             return maxID;
         }
         for (int i = 1; i < rows.size(); i++) {
