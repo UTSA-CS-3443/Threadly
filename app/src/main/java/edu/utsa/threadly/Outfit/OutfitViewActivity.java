@@ -105,4 +105,6 @@ public class OutfitViewActivity extends AppCompatActivity {
         }
         return clothingItems;
     }
+
+
 }
