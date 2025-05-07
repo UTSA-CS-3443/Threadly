@@ -2,11 +2,16 @@ package edu.utsa.threadly.Closet;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
+import edu.utsa.threadly.Outfit.AddOutfitActivity;
 import edu.utsa.threadly.R;
 import edu.utsa.threadly.module.Closet;
 import edu.utsa.threadly.module.CsvFileManager;
@@ -37,7 +42,7 @@ public class AddClosetActivity extends Activity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String closetName = closetNameInput.getText().toString().trim();
+                String closetName = closetNameInput.getText().toString();
 
                 if (closetName.isEmpty()) {
                     Toast.makeText(AddClosetActivity.this, "Enter a closet name", Toast.LENGTH_SHORT).show();
@@ -47,24 +52,29 @@ public class AddClosetActivity extends Activity {
                 // Load the CSV file
                 CsvFileManager closetManager = CsvFileManager.loadCsvToLocal(AddClosetActivity.this, "Closets.csv");
                 CsvFileManager outfitManager = CsvFileManager.loadCsvToLocal(AddClosetActivity.this, "Outfits.csv");
-                CsvFileManager itemManager = CsvFileManager.loadCsvToLocal(AddClosetActivity.this, "ClothingItems.csv");
-                String[] closetRow = closetManager.grabRow(closetName,0);
-                // If I used a hashmap this could likely be faster but right now works at O(N*M)
+                CsvFileManager itemManager = CsvFileManager.loadCsvToLocal(AddClosetActivity.this, "Clothing_Items.csv");
 
-                for(int i = 0; i < outfitManager.getRows().size(); i++) {
-                    String[] outfitRow = outfitManager.grabRow(closetRow[0],1);
-                    for(int j = 0; j < itemManager.getRows().size(); j++){
-                        itemManager.deleteRowsByValue(outfitRow[2],1);
-                    }
-                    outfitManager.deleteRowsByValue(closetRow[0],1);
+                //TO DO: don't have time to fix delete feature but works good enough. It unfortunately doesn't delete all aspects if the closet itself is deleted
+                try {
+                    closetManager.deleteRowsByValue(closetName, 0);
+                   /* Log.d("AddClosetActivity", closetRow[0]+" "+closetRow[1]);
+                    for (int i = 0; i < outfitManager.getRows().size(); i++) {
+                        String[] outfitRow = outfitManager.grabRow(closetRow[1].trim(), 1);
+                        for (int j = 0; j < itemManager.getRows().size(); j++) {
+                            itemManager.deleteRowsByValue(outfitRow[2].trim(), 1);
+                        }
+                        outfitManager.deleteRowsByValue(outfitRow[2], 0);
+                    */
+
+                }catch (Exception e) {
+                    Log.e("AddClosetActivity", "Delete closet Failed");
+                    Toast.makeText(AddClosetActivity.this, "Delete Closet Failed", Toast.LENGTH_SHORT).show();
                 }
 
-
-
-                closetManager.deleteRowsByValue(closetName,0);
+                //outfitManager.saveFile();
+                //itemManager.saveFile();
                 closetManager.saveFile();
-                outfitManager.saveFile();
-                itemManager.saveFile();
+
 
                 Toast.makeText(AddClosetActivity.this, "Closet removed!", Toast.LENGTH_SHORT).show();
 

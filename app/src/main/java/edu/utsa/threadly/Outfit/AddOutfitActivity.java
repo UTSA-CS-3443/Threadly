@@ -57,7 +57,7 @@ public class AddOutfitActivity extends AppCompatActivity {
                 // Load the CSV file
 
                 CsvFileManager outfitManager = CsvFileManager.loadCsvToLocal(AddOutfitActivity.this, "Outfits.csv");
-                CsvFileManager itemManager = CsvFileManager.loadCsvToLocal(AddOutfitActivity.this, "ClothingItems.csv");
+                CsvFileManager itemManager = CsvFileManager.loadCsvToLocal(AddOutfitActivity.this, "Clothing_Items.csv");
 
                     //Most likely a more efficient way to go about doing this, but most will probably be O(N) anyway so this should work fine
                     String[] outfitRow = outfitManager.grabRow(outfitName,0);
