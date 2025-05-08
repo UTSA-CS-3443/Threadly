@@ -10,7 +10,7 @@ Threadly is an Android application that allows users to view and manage a list o
 ## Contributors
 
 - Ryan Bonnet
-- Alek Brysch
+- Alekzander Brysch
 - Robert Farrel
 - Hunter Spencer
 
@@ -18,7 +18,7 @@ Threadly is an Android application that allows users to view and manage a list o
 
 ## How to Run the App
 
-Open the app, press the continue arrow on the entry screen. Select the closet you want to view, or add/delete a closet. Select an outfit you want to view or create a blank outfit. Build the outfit by taking a picture of each article of clothing to view it in the app.
+Open the app, press the continue arrow on the entry screen. Select the closet you want to view, or add/delete a closet. Build the outfit by taking a picture of each article of clothing to view it in the app. Select an outfit you want to view or create a blank outfit. Also deleting for any item in the app must be done on its respective screen. For example deleting a closet will not delete the outfits inside. The outfits must be deleted first for deletion to be succesfull, this also goes for outfits and their respective clothing items.
 
 ---
 
