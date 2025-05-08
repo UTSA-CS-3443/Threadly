@@ -30,7 +30,7 @@ Open the app, press the continue arrow on the entry screen. Select the closet yo
 ---
 
 ### Known Issues
-Deleting for any item in the app must be done on its respective screen. For example deleting a closet will not delete the outfits inside. The outfits must be deleted first for deletion to be succesfull, this also goes for outfits and their respective clothing items.
+Deleting for any item in the app must be done on its respective screen. For example deleting a closet will not delete the outfits inside. The outfits must be deleted first for deletion to be succesful, this also goes for outfits and their respective clothing items.
 Otherwise the undeleted outfits will show up in the next closet or outfit created by the user. 
 This app is a huge memory hog so be mindful of lag spikes, slow loading, and other memory issues that may cause the emulator or respective device to run the app slower than it originally would. 
 
