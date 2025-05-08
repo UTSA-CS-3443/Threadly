@@ -65,8 +65,8 @@ public class CsvFileManager {
      */
     private void initializeFile() {
         SharedPreferences prefs = activity.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        //boolean isFirstRun = prefs.getBoolean(firstRunKey, true);
-        boolean isFirstRun = true;
+        boolean isFirstRun = prefs.getBoolean(firstRunKey, true);
+        //boolean isFirstRun = true;
 
         if (isFirstRun) {
             Log.i(TAG, "First run for " + filename + ": loading from assets.");
@@ -100,7 +100,7 @@ public class CsvFileManager {
         Scanner scan = new Scanner(in);
         while (scan.hasNextLine()) {
             String line = scan.nextLine();
-            String[] tokens = line.split(",");
+            String[] tokens = line.trim().split("\\s*,\\s*");
             rows.add(tokens);
         }
     }
@@ -111,7 +111,7 @@ public class CsvFileManager {
     public void saveFile() {
         try (OutputStream out = activity.openFileOutput(filename, Context.MODE_PRIVATE)) {
             for (String[] row : rows) {
-                String line = String.join(", ", row) + "\n";
+                String line = String.join(",", row) + "\n";
                 out.write(line.getBytes(StandardCharsets.UTF_8));
             }
         } catch (IOException e) {

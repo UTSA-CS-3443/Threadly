@@ -56,7 +56,17 @@ public class AddClosetActivity extends Activity {
 
                 //TO DO: don't have time to fix delete feature but works good enough. It unfortunately doesn't delete all aspects if the closet itself is deleted
                 try {
+                    String[] closetRow = closetManager.grabRow(closetName,0);
                     closetManager.deleteRowsByValue(closetName, 0);
+                    /*for(int i = 1; i< outfitManager.getRows().size(); i++){
+                        String[] row =outfitManager.getRows().get(i);
+                        Log.d("AddClosetActivity", "Looking at..."+row[0]);
+                        if(Integer.parseInt(row[1].trim()) == Integer.parseInt(closetRow[1].trim()) ){
+                            Log.w("AddClosetActivity", "Deleted"+row[0]);
+                            outfitManager.deleteRowsByValue(row[1],0);
+                        }
+
+                    }*/
                    /* Log.d("AddClosetActivity", closetRow[0]+" "+closetRow[1]);
                     for (int i = 0; i < outfitManager.getRows().size(); i++) {
                         String[] outfitRow = outfitManager.grabRow(closetRow[1].trim(), 1);

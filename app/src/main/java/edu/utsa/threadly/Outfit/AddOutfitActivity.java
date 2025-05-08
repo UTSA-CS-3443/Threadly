@@ -72,7 +72,7 @@ public class AddOutfitActivity extends AppCompatActivity {
                 outfitManager.saveFile();
                 itemManager.saveFile();
 
-                Toast.makeText(AddOutfitActivity.this, "Closet removed!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddOutfitActivity.this, "Outfit removed!", Toast.LENGTH_SHORT).show();
                 setResult(RESULT_OK);
                 // Finish and go back to ClosetActivity
                 finish();
