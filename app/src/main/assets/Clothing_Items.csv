@@ -1,5 +1,5 @@
 name,outfit_id,picture,type
-sharktooth necklace,0,shark_tooth,necklace
+shark tooth necklace,0,shark_tooth_necklace,necklace
 brown white swim shorts,0,brown_white_swim_shorts,shorts
 beach sandals,0,beach_sandals,shoes
 jean jacket,1,jean_jacket,jacket
@@ -16,19 +16,20 @@ clown wig,4,clown_wig,wig
 clown red nose,4,clown_red_nose,nose
 clown shirt,4,clown_shirt,shirt
 clown pants,4,clown_pants,pants
+clown shoes,4,clown_shoes,footwear
 rat costume,5,rat_costume,costume
 spidey mask,6,spidey_mask,mask
 spidey shirt,6,spidey_shirt,shirt
 spidey pants,6,spidey_pants,pants
 spidey gloves,6,spidey_gloves,gloves
 spidey webshooters,6,spidey_web_shooters,web shooters
-spidey shoes,6,spidey_shoes,
+spidey shoes,6,spidey_shoes,footwear
 black_fedora,7,black_fedora,hat
 white button up,7,white_button_up,shirt
-black vest,7,black_vest,vest
-black tie,7,black_tie,tie
+black vest,7,black_vest,tops
+black tie,7,black_tie,tops
 blue rain jacket,8,blue_rain_jacket,jacket
-black rain boots,8,black_rain_jacket,shoes
+black rain boots,8,black_rain_boots,shoes
 grey straight jeans,9,grey_straight_jeans,
-red nike hoodie,9,red_nike_hoodie,hoodie
+red nike hoodie,9,red_nike_hoodie,tops
 white black nike blazers,9,white_black_nike_blazers,shoes
